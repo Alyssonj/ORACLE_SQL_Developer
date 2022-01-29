@@ -1,0 +1,7 @@
+select to_date(decode(substr(nr_semester,3,1),'/',substr(nr_semester,7,4)||substr(nr_semester,3,4)||
+               substr(nr_semester,1,2),nr_semester),'yyyy/mm/dd') dt
+     , nm_studio, tipo
+     , sum(id_students) as id_students_zero, sum(new_students) as new_students, sum(active) as actv
+  from tst.dw_id_students_ext
+ group by to_date(decode(substr(nr_semester,3,1),'/',substr(nr_semester,7,4)||substr(nr_semester,3,4)||
+                  substr(nr_semester,1,2),nr_semester),'yyyy/mm/dd'), nm_studio, type

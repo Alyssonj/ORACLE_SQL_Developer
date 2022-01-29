@@ -1,0 +1,20 @@
+select count(1) from (
+select ' ' coluna from dual -- um branco
+union all
+select ' ' from dual -- um branco
+union all
+select null from dual -- um null
+union all
+select '  ' from dual -- dois brancos
+union all
+select ' ' from dual -- um branco
+) 
+where 
+
+opção 1:
+  trim(coluna) is not null -- exclui todo linha cuja coluna é null ou espaços
+
+Opção 2:
+  and coluna<>' '          -- exclui todo linha cuja coluna é 1 espaço
+  and coluna<>'  '         -- exclui todo linha cuja coluna é 2 espaços
+  and coluna is not null   -- exclui todo linha cuja coluna é nula
